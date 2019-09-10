@@ -37,12 +37,20 @@ const Routes = createAppContainer(
     - headerTintColor: header tint color
 
 **Note:**
-On `index.js` we can access the global component called Main an use the method `navigationOptions` to set some configurations:
+On `index.js` we can access the method from the component `navigationOptions` to set some configurations:
 
+(Using stateless component)
 ```js
 Main.navigationOptions = {
   title: 'Usuários',
 };
+```
+
+(Using stateful component)
+```js
+static navigationOptions = {
+  title: 'Usuários',
+};n
 ```
 
 ---
@@ -180,4 +188,46 @@ First we have to import it on index.js `import AsyncStorage from '@react-native-
 Then we declare `async componentDidMount(prevProps, prevState){}` that will search data and mount on the screen followed by the `async componentDidUpdate(){}` to register when occurs modifications (we are going to use only prevState parameter).
 
 The `componenteDidUpdate` compare the previous state or propertie to the current/
+
+### Navigation
+By default, our page component come with properties, and in this case we are going to use the `navigation()` method by declaring a `handleNavigate(){}`
+
+Exemple:
+
+```js
+handleNavigate = user => {
+    const { navigation } = this.props;
+
+    navigation.navigate('User', { user });
+  };
+```
+The method is receiving a parameter named user (it is an object) that is send by the ProfileButton inside out rendered list.
+
+```jsx
+<ProfileButton onPress={() => this.handleNavigate(item)}>
+```
+by using this, the object can be claimed at the next page by using the `navigation.getParam('user')`
+
+---
+
+### Properties Validation
+[Dependencies: prop-types]()
+Even if the properties were not created by us, we need to validate. First of all, import it on the `index.js` like this `import PropTypes from 'prop-types'`.
+
+Exemple:
+
+```js
+static propTypes = {
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func,
+    }).isRequired,
+  };
+```
+The navigation must be an object and the navigate is a function.
+
+
+
+
+
+
 

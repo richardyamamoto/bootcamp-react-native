@@ -65,3 +65,8 @@ To prevent the lost of data when refresh the application, we use the async-stora
 
 **Note:**
 After installing, you must remount the application `yarn react-native run-android`
+
+### Validate Properties
+To validate the properties we are going to use the `prop-types`, install by running:
+
+`yarn add prop-types`
