@@ -1,6 +1,10 @@
 # Briefing
 This repository tends to be auxiliar material for consult, the application builded here points to be a studying case. So prepare a good coffee and here we go!
 
+# Index
+- [Dependencies](https://github.com/richardyamamoto/bootcamp-react-native/blob/master/notes/DEPENDENCIES.md)
+- [Building](https://github.com/richardyamamoto/bootcamp-react-native/blob/master/notes/BUILDINGNOTES.md)
+
 # React Native Installation
 All this information was extracted from [Rockeseat](https://docs.rocketseat.dev/ambiente-react-native/android/linux), we are using Linux Mint 19.1 (Tessa).
 
@@ -55,7 +59,7 @@ In most cases we have to install 32bit version libs for linux emulate our projec
 # Android Studio
 If you reached through here, it means that you really want to study, so let's install the Android Studio Command line tools,
 
-**Note:** 
+**Note:**
 We are going install only the Command Line Tools.
 
 [Link to download](https://developer.android.com/studio/#downloads)
@@ -117,7 +121,7 @@ Drink a little more coffee and let's do it.
   - It will change between versions
 - Inside Settings, search for Account and login with your creadentials. [Genymotion](https://www.genymotion.com/fun-zone/).
 - Still in Setting, search for ADB, and go to the option `Use custom Android SDK tool`
-  - Remember the directory that you extracted the Android Studio command line tools 
+  - Remember the directory that you extracted the Android Studio command line tools
   [To refresh you memory](https://github.com/richardyamamoto/react-native/blob/master/README.md#android-studio)
 - Close Settings and to the next step.
 
@@ -132,7 +136,7 @@ If you are here, you are not so lucky like me.
 The virtualization error occurs because of a BIOS configuration. Restart your computer, and inside your BIOS and find somethings like Virtualization, and enable it. Shutdown your computer and turn it on again. Try to run your device template on Genymotion again. If everything works, keep going, you're almost done.
 
 ### Connecting your device with ADB
-Now as the tittle says, we are going to connect your emulated device with ADB (Android Debug Bridge). First of all, open you terminal and run 
+Now as the tittle says, we are going to connect your emulated device with ADB (Android Debug Bridge). First of all, open you terminal and run
 
 `adb connect <emulated_device_ip>:5555`
 

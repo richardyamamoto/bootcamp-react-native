@@ -1,3 +1,65 @@
+### React Native Component
+In ReactJS and React Native, we have two ways to build a component. Stateful
+Component and Stateless Component. That means the stateful components are
+keeping track of changing data, while stateless components print out what is
+given to them via props, or they always render the same thing.
+
+Exemple of [Stateful and Stateless](https://gist.github.com/richardyamamoto/af4d4a12030c3a657691e8b7322b3065)
+---
+
+### Routes
+To navigate through the pages, we use the react-navigation as we saw in [Dependencies: Routes](https://github.com/richardyamamoto/bootcamp-react-native/blob/master/notes/DEPENDENCIES.md#routes). The createStackNavigator has second parameter that is a config object, and in this objecti we can set some defaults to our pages header as:
+```js
+const Routes = createAppContainer(
+  createStackNavigator(
+    {
+      Main,
+      User,
+    },
+    {
+      headerLayoutPreset: 'center',
+      headerBackTitleVisible: false,
+      defaultNavigationOptions: {
+        headerStyle: {
+          backgroundColor: '#7159c1',
+        },
+        headerTintColor: '#fff',
+      },
+    }
+  )
+);
+```
+- headerLayoutPreset: Set the alignment of the text (on Android the default is align-left)
+- headerBackTitleVisible: The default is to show the last page title on the header
+- defaultNavigationOptions: Configurations of the navigation
+  - headerStyle: Customize the header
+    - backgroundColor: background color
+    - headerTintColor: header tint color
+
+**Note:**
+On `index.js` we can access the global component called Main an use the method `navigationOptions` to set some configurations:
+
+```js
+Main.navigationOptions = {
+  title: 'Usuários',
+};
+```
+
+---
+### Api
+As we saw in [Depencencies](https://github.com/richardyamamoto/bootcamp-react-native/blob/master/notes/DEPENDENCIES.md#axios), after create the intance of Axios in `src/services/api.js`, let's call the API to we consume some data.
+
+An api consuming always going to be asynchronous, because we are expecting the response. So to handle it functions like:
+```js
+handleAddUser = async () => {
+  const response = await api.get('/api_adress/etc')
+}
+```
+
+**Note:**
+Always using arrow function syntax.
+
+---
 ### Input
 React native has standards props for TextInput
 - autoCorrect: Auto corrects words, the default is true
@@ -5,8 +67,47 @@ React native has standards props for TextInput
   - Currently used for name
 - placeholder: phrase or words placed on input
   - placeholder has self props to be stylized
-- onChangeText: possible to capture the words written on the field
-  - Exemple: 
+- value: will receive the value
+- onChangeText: possible to capture directly the words written on the field
+  - Exemple:
   ```js
   onChangeText={text => this.setState({ newUser: text })}
   ```
+- onSubmitEditing: handle the submit after finsh the editing
+
+---
+### Buttons
+We are using the RectButton as component, that is necessary to import from react-native-gesture-handler
+`import {RectButton} from 'react-native-gesture-handler`. Using this button, we have the android effect when pressed.
+
+Properties:
+- onPress: analog to onClick. (use the same function of onSubmitEditing)
+
+**Note:**
+On styles.js the component must be declared like this:
+`export const = styled(RecButton)``;`
+
+---
+### List
+In another hand compared to ReactJS, in React Native the list does not need to be mapped like: `{users.map(user => {})}`.
+Properties:
+
+- data: used to refer from where the data come from
+- keyExtractor: like in ReacJS using the map method, we need to found a unique key for the elements
+- renderItem: this propertie we pick as parameter **item** from an object and the return of the function is our elements rendered, look at the following exemple:
+
+```js
+renderItem={({ item }) => (
+  <User>
+    <Avatar source={{ uri: item.avatar }} />
+    <Name>{item.name}</Name>
+    <Bio>{item.bio}</Bio>
+    <ProfileButton onPress={() => {}}>
+      <ProfileButtonText>Ver perfil</ProfileButtonText>
+    </ProfileButton>
+  </User>
+)}
+```
+
+**Note:**
+The source of the picture must be declared as a uri propertie form an object
