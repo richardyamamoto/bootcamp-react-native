@@ -4,9 +4,9 @@ Component and Stateless Component. That means the stateful components are
 keeping track of changing data, while stateless components print out what is
 given to them via props, or they always render the same thing.
 
-Exemple of [Stateful and Stateless](https://gist.github.com/richardyamamoto/af4d4a12030c3a657691e8b7322b3065)
----
+[Stateful and Stateless](https://gist.github.com/richardyamamoto/af4d4a12030c3a657691e8b7322b3065)
 
+---
 ### Routes
 To navigate through the pages, we use the react-navigation as we saw in [Dependencies: Routes](https://github.com/richardyamamoto/bootcamp-react-native/blob/master/notes/DEPENDENCIES.md#routes). The createStackNavigator has second parameter that is a config object, and in this objecti we can set some defaults to our pages header as:
 ```js
@@ -60,6 +60,11 @@ handleAddUser = async () => {
 Always using arrow function syntax.
 
 ---
+### React Native Elements
+React Native has elements natives from the device as Keyboard. To use their method we have to import the module from react-native, for exemple:
+`import { KeyBoard } from 'react-native'`
+
+---
 ### Input
 React native has standards props for TextInput
 - autoCorrect: Auto corrects words, the default is true
@@ -111,3 +116,43 @@ renderItem={({ item }) => (
 
 **Note:**
 The source of the picture must be declared as a uri propertie form an object
+
+---
+### Styled Components
+This librarie allow us to use CSS inside JavaScript files besides that we can call properties and attributes too.
+
+In React Native as opposed to ReactJS, we can't stylize components inside our main component like:
+```js
+export const Bio = styled.Text`
+  h1 {
+    flex:1;
+  }
+`;
+```
+**This is not acceptable.**
+
+By the way, in this case we have to create a unique component for each.
+
+The propertie or attribute call from the component is a great way to manipulate data and customization, here is an exemple:
+```js
+export const Bio = styled.Text.attrs({
+  numberOfLines: 2,
+})`
+  font-size: 13px;
+  line-height: 18px;
+  color: #999;
+  margin-top: 5px;
+  text-align: center;
+`;
+```
+In this case the component **Text** has attribute `numberOfLines` and it shows only the number of lines that we set. There are an ocean of attributes for each component that we can search on documentation.
+
+Another exemple is:
+```js
+export const List = styled.FlatList.attrs({
+  showsVerticalScrollIndicator: false,
+})`
+  margin-top: 20px;
+`;
+```
+The attribute `showsVerticalScrollIndicator` enable ou desable the visible of the scroll indicator.
