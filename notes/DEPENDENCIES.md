@@ -40,7 +40,7 @@ Always need to be before our routes.
 Allow the user to navigate as a stack. So it is possible to return to the last
 navigated page and it will not be erased
 
-`yarn add react-navigation-stack` 
+`yarn add react-navigation-stack`
 
 #### createSwitchNavigator
 When navigate to the next page, the last one will be erased
@@ -58,3 +58,10 @@ the application
 ### Axios
 We are going to use the same librarie that was used on ReactJS
 `yarn add axios`
+
+### Local Storage
+To prevent the lost of data when refresh the application, we use the async-storage lib, to install
+`yarn add @react-native-community/async-storage`
+
+**Note:**
+After installing, you must remount the application `yarn react-native run-android`

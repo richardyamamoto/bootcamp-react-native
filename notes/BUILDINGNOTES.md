@@ -122,6 +122,7 @@ The source of the picture must be declared as a uri propertie form an object
 
 ---
 ### Styled Components
+[Dependencies: Styled Components]()
 This librarie allow us to use CSS inside JavaScript files besides that we can call properties and attributes too.
 
 In React Native as opposed to ReactJS, we can't stylize components inside our main component like:
@@ -170,3 +171,13 @@ export const SubmitButton = styled(RectButton)`
 In this case the `opacity` will be changed to 0.7 if the propertie
 `loading = true` else `opacity: 1`. Remember to use the `${}` to call JavaScript
 inside CSS
+
+### Local Storage
+[Dependencies: Async-storage]()
+AsyncStorage is a simple, unencrypted, asynchronous, persistent, key-value storage system that is global to the app. It should be used instead of LocalStorage.
+
+First we have to import it on index.js `import AsyncStorage from '@react-native-community/async-storage'`.
+Then we declare `async componentDidMount(prevProps, prevState){}` that will search data and mount on the screen followed by the `async componentDidUpdate(){}` to register when occurs modifications (we are going to use only prevState parameter).
+
+The `componenteDidUpdate` compare the previous state or propertie to the current/
+
