@@ -64,6 +64,9 @@ Always using arrow function syntax.
 React Native has elements natives from the device as Keyboard. To use their method we have to import the module from react-native, for exemple:
 `import { KeyBoard } from 'react-native'`
 
+- KeyBoard: KeyBoard
+- ActivityIndicator: Indicate the loading status based on OS
+
 ---
 ### Input
 React native has standards props for TextInput
@@ -155,4 +158,15 @@ export const List = styled.FlatList.attrs({
   margin-top: 20px;
 `;
 ```
-The attribute `showsVerticalScrollIndicator` enable ou desable the visible of the scroll indicator.
+The attribute `showsVerticalScrollIndicator` enable or disable the visible of the scroll indicator.
+
+#### Ternary Operator
+On Styled Components to call a propertie we can set a Ternary operator to compare the state, for example:
+```js
+export const SubmitButton = styled(RectButton)`
+  opacity: ${props => (props.loading ? 0.7 : 1)};
+`;
+```
+In this case the `opacity` will be changed to 0.7 if the propertie
+`loading = true` else `opacity: 1`. Remember to use the `${}` to call JavaScript
+inside CSS
