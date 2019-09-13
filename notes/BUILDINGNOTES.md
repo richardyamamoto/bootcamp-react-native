@@ -90,6 +90,7 @@ React native has standards props for TextInput
   onChangeText={text => this.setState({ newUser: text })}
   ```
 - onSubmitEditing: handle the submit after finsh the editing
+- returnKeyType: this change the actions of the "enter" button on mobile keyboard
 
 ---
 ### Buttons
@@ -187,10 +188,11 @@ AsyncStorage is a simple, unencrypted, asynchronous, persistent, key-value stora
 First we have to import it on index.js `import AsyncStorage from '@react-native-community/async-storage'`.
 Then we declare `async componentDidMount(prevProps, prevState){}` that will search data and mount on the screen followed by the `async componentDidUpdate(){}` to register when occurs modifications (we are going to use only prevState parameter).
 
-The `componenteDidUpdate` compare the previous state or propertie to the current/
+The `componenteDidUpdate` compare the previous state or propertie to the current
 
+---
 ### Navigation
-By default, our page component come with properties, and in this case we are going to use the `navigation()` method by declaring a `handleNavigate(){}`
+By default, our page component come with properties, and in this case we are going to use the `navigation` propertie with the `navigate()` method starting declaring a `handleNavigate(){}` function.
 
 Exemple:
 
@@ -201,12 +203,39 @@ handleNavigate = user => {
     navigation.navigate('User', { user });
   };
 ```
-The method is receiving a parameter named user (it is an object) that is send by the ProfileButton inside out rendered list.
+The method is receiving a parameter named _user_ (an object) that is sended by the ProfileButton inside the rendered list.
 
 ```jsx
 <ProfileButton onPress={() => this.handleNavigate(item)}>
 ```
-by using this, the object can be claimed at the next page by using the `navigation.getParam('user')`
+#### On Stateless component
+The stateless component recover the navigation propertie on its parameters like
+the following exemple:
+
+```js
+export default function User({ navigation }) {
+  console.tron.log(navigation.getParam('user'));
+  return <View />;
+}
+```
+#### On Stateful component
+In this case, the flux of recovering the propertie is a little bit different.
+
+```js
+export default class User extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: navigation.getParam('user').name,
+  });
+
+  render() {
+    console.tron.log(navigation.getParam('user'));
+    return <View />;
+  }
+}
+```
+
+by using this,on a **stateless component** the object can be claimed at the next page by using the `navigation.getParam('user')`
+
 
 ---
 
