@@ -50,7 +50,7 @@ Main.navigationOptions = {
 ```js
 static navigationOptions = {
   title: 'Usuários',
-};n
+};
 ```
 
 ---
